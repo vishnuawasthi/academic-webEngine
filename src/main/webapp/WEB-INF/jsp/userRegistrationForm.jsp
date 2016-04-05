@@ -7,7 +7,7 @@
 <c:if test="${not empty failure }">
 	<h1 style="color: red;">${failure }</h1>
 </c:if>
-<div class="wrapper form-color">
+<div class="wrapper  form-color">
 	<form:form action="register" method="POST"
 		modelAttribute="registrationForm"
 		class="form-horizontal" role="form">

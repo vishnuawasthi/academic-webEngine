@@ -40,6 +40,15 @@ public class UserController {
 	private String PUT = "PUT";
 
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView registerForm() {

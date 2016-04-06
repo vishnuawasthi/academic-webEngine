@@ -75,8 +75,7 @@
 			<label class="control-label col-sm-4 col-md-4" for="confirmPassword"><spring:message
 					code="label.registrationForm.confirmPassword"></spring:message></label></label>
 			<div class="col-sm-6 col-md-6">
-				<form:input path="confirmPassword" id="confirmPassword"
-					class="form-control" />
+				<form:input path="confirmPassword" id="confirmPassword" readonly="readOnly" class="form-control" />
 				<form:errors class="error-message" path="confirmPassword"></form:errors>
 			</div>
 		</div>

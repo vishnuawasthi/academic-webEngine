@@ -15,6 +15,11 @@ public class BaseController {
 	
 	@RequestMapping(value ={BASE_URI,WELCOME_URI}, method = RequestMethod.GET)
 	public ModelAndView index() {
+		
+		
+		
+		
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("index");
 		return modelAndView;

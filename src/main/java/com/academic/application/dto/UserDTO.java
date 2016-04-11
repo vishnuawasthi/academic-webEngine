@@ -15,6 +15,7 @@ public class UserDTO {
 	private String city;
 	private String state;
 	private String country;
+	private String pincode;
 	private String profilePictureURL;
 	private String roleName;
 	public UserDTO() {
@@ -125,6 +126,19 @@ public class UserDTO {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+
+
+	public String getPincode() {
+		return pincode;
+	}
+
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+
+		
 	
 	
 	

@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.catalina.connector.Request;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -161,7 +161,63 @@ public class UserController {
 		return modelAndView;
 	}
 	
+	@RequestMapping (value="/viewUserDetails" , method=RequestMethod.GET)
+	public ModelAndView showUserDetails()
+	{
+		log.info("showUserDetails Start");
+		ModelAndView modelAndView = new ModelAndView();
+		Long id = 2L;
+		UserDTO dto  = 	userService.getOne(id);
+		modelAndView.addObject("userDetals",dto);
+		modelAndView.setViewName("viewUserDetail");
+		log.info(" showUserDetails end");
+		return modelAndView;
+		
+	}
 	
+	@RequestMapping(value ="editUserDetail",method=RequestMethod.GET)
+	public ModelAndView editUserDetail(@ModelAttribute("registrationForm") RegistrationForm registrationForm)
 	
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		log.info("editUserDetial() strat");
+		Long id=registrationForm.getId();
+		UserDTO dto=userService.getOne(id);
+		
+		modelAndView.addObject("userDetail",dto);
+		modelAndView.addObject(registrationForm);
+		modelAndView.setViewName("editUserDetial");
+		
+		
+		log.info("editUserDetial() end");
+		
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value ="updateUserDetail",method=RequestMethod.POST)
+	public ModelAndView updateUserDetail(@ModelAttribute("registrationForm") RegistrationForm registrationForm)
+	
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		log.info("updateUserDetail() strat");
+		
+	
+		try {
+			userService.update(registrationForm);
+		} catch (ResourceNotFoundException e) {
+			log.error(e.getMessage());
+			
+		}
+		modelAndView.addObject("success", "Your imformation has been updated successfullly.");
+		modelAndView.addObject("registrationForm", new RegistrationForm());
+		modelAndView.setViewName("editUserDetial");
+		
+		
+		log.info("updateUserDetail() end");
+		
+		
+		return modelAndView;
+	}
 
 }

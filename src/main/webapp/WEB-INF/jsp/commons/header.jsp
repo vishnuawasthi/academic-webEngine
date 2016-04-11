@@ -41,7 +41,7 @@
 				<li class="active"><a href="index.html">Home</a></li>
 				<li><a class="drop" href="#">Dash Board</a>
 					<ul>
-						<li><a href="pages/gallery.html">View Details</a></li>
+						<li><a href="viewUserDetails">View Details</a></li>
 						<li><a href="pages/portfolio.html">Update Details</a></li>
 						<li><a href="pages/full-width.html">Change password</a></li>
 						<li><a href="pages/sidebar-left.html">Contact us</a></li>

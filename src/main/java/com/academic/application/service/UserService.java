@@ -68,12 +68,14 @@ public interface UserService {
 			entity.setId(registrationForm.getId());
 			entity.setFirstName(registrationForm.getFirstName());
 			entity.setLastName(registrationForm.getLastName());
+			entity.setEmail(registrationForm.getEmail());
 			entity.setMobile(registrationForm.getMobile());
 			entity.setAddressLine1(registrationForm.getAddressLine1());
 			entity.setAddressLine2(registrationForm.getAddressLine2());
 			entity.setCity(registrationForm.getCity());
 			entity.setState(registrationForm.getState());
 			entity.setCountry(registrationForm.getCountry());
+			entity.setPincode(registrationForm.getPincode());
 			entity.setProfilePictureURL(registrationForm.getProfilePictureURL());
 			entity.setUsername(registrationForm.getUsername());
 			entity.setPassword(registrationForm.getPassword());
@@ -157,9 +159,11 @@ public interface UserService {
 				dto.setMobile(entity.getMobile());
 				dto.setAddressLine1(entity.getAddressLine1());
 				dto.setAddressLine2(entity.getAddressLine2());
+				dto.setEmail(entity.getEmail());
 				dto.setCity(entity.getCity());
 				dto.setState(entity.getState());
 				dto.setCountry(entity.getCountry());
+				dto.setPincode(entity.getPincode());
 				dto.setProfilePictureURL(entity.getProfilePictureURL());
 				dto.setUsername(entity.getUsername());
 				dto.setPassword(entity.getPassword());

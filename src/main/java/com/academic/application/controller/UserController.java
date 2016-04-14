@@ -33,24 +33,17 @@ public class UserController {
 
 	private String HTTP_METHOD = "httpMethod";
 	
+	private  static final String  REGISTRATION_URI = "/register";
+	
+	private static final String CHANGE_PASSWORD_URI="/changePassword";
+
 	private String POST = "POST";
-	
+
 	private String GET = "GET";
-	
+
 	private String PUT = "PUT";
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@RequestMapping(value = REGISTRATION_URI, method = RequestMethod.GET)
 	public ModelAndView registerForm() {
 		log.info("registerForm() - start");
 		ModelAndView modelAndView = new ModelAndView();
@@ -63,8 +56,9 @@ public class UserController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView register(@Valid  @ModelAttribute("registrationForm") RegistrationForm registrationForm, BindingResult result) {
+	@RequestMapping(value =REGISTRATION_URI, method = RequestMethod.POST)
+	public ModelAndView register(@Valid @ModelAttribute("registrationForm") RegistrationForm registrationForm,
+			BindingResult result) {
 		log.info("register() - start");
 		Long id = null;
 		ModelAndView modelAndView = new ModelAndView();
@@ -113,8 +107,11 @@ public class UserController {
 			registrationForm.setFirstName(dto.getFirstName());
 			registrationForm.setLastName(dto.getLastName());
 			registrationForm.setMobile(dto.getMobile());
+			registrationForm.setPhone(dto.getPhone());
 			registrationForm.setAddressLine1(dto.getAddressLine1());
 			registrationForm.setAddressLine2(dto.getAddressLine2());
+			registrationForm.setEmail(dto.getEmail());
+			registrationForm.setPincode(dto.getPincode());
 			registrationForm.setCity(dto.getCity());
 			registrationForm.setState(dto.getState());
 			registrationForm.setCountry(dto.getCountry());
@@ -140,8 +137,8 @@ public class UserController {
 			return modelAndView;
 		}
 		try {
-			 userService.update(registrationForm);
-			 modelAndView.addObject("success", "Your imformation has been updated successfullly.");
+			userService.update(registrationForm);
+			modelAndView.addObject("success", "Your imformation has been updated successfullly.");
 		} catch (ResourceNotFoundException e) {
 			log.error(e.getMessage());
 			modelAndView.addObject("failure", "There is not such role named as   " + registrationForm.getRole()
@@ -152,72 +149,92 @@ public class UserController {
 		log.info("updateUser() - end");
 		return modelAndView;
 	}
-	
 
-	@RequestMapping(value ={"contact-us"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "contact-us" }, method = RequestMethod.GET)
 	public ModelAndView contactus() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("contact-us");
 		return modelAndView;
 	}
-	
-	@RequestMapping (value="/viewUserDetails" , method=RequestMethod.GET)
-	public ModelAndView showUserDetails()
-	{
+
+	@RequestMapping(value = "/viewUserDetails", method = RequestMethod.GET)
+	public ModelAndView showUserDetails() {
 		log.info("showUserDetails Start");
 		ModelAndView modelAndView = new ModelAndView();
 		Long id = 2L;
-		UserDTO dto  = 	userService.getOne(id);
-		modelAndView.addObject("userDetals",dto);
+		UserDTO dto = userService.getOne(id);
+		modelAndView.addObject("userDetals", dto);
 		modelAndView.setViewName("viewUserDetail");
 		log.info(" showUserDetails end");
 		return modelAndView;
-		
+
 	}
-	
-	@RequestMapping(value ="editUserDetail",method=RequestMethod.GET)
-	public ModelAndView editUserDetail(@ModelAttribute("registrationForm") RegistrationForm registrationForm)
-	
+
+	@RequestMapping(value = "editUserDetail", method = RequestMethod.GET)
+	public ModelAndView editUserDetail(@RequestParam(value = "id", required = true) Long id)
+
 	{
 		ModelAndView modelAndView = new ModelAndView();
+
+		RegistrationForm registrationForm = new RegistrationForm();
 		log.info("editUserDetial() strat");
-		Long id=registrationForm.getId();
-		UserDTO dto=userService.getOne(id);
-		
-		modelAndView.addObject("userDetail",dto);
-		modelAndView.addObject(registrationForm);
+		// Long id=registrationForm.getId();
+		UserDTO dto = userService.getOne(id);
+
+		registrationForm = dtoToForm(dto);
+
+		modelAndView.addObject("registrationForm", registrationForm);
 		modelAndView.setViewName("editUserDetial");
-		
-		
+
 		log.info("editUserDetial() end");
-		
-		
+
 		return modelAndView;
 	}
-	
-	@RequestMapping(value ="updateUserDetail",method=RequestMethod.POST)
-	public ModelAndView updateUserDetail(@ModelAttribute("registrationForm") RegistrationForm registrationForm)
-	
+
+	@RequestMapping(value = "updateUserDetail", method = RequestMethod.POST)
+	public ModelAndView updateUserDetail(@Valid @ModelAttribute("registrationForm") RegistrationForm registrationForm,
+			BindingResult result)
+
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		log.info("updateUserDetail() strat");
-		
-	
+		if (result.hasErrors()) {
+			System.out.println("Error Block is Coming");
+			Long id = registrationForm.getId();
+			UserDTO dto = userService.getOne(id);
+
+			// modelAndView.addObject("userDetail",dto);
+			// modelAndView.addObject(registrationForm);
+
+			modelAndView.addObject("registrationForm", registrationForm);
+			modelAndView.setViewName("editUserDetial");
+			return modelAndView;
+		}
+
 		try {
 			userService.update(registrationForm);
 		} catch (ResourceNotFoundException e) {
+			modelAndView.addObject("failure", "There is not such role named as   " + registrationForm.getRole()
+					+ " , Please try with some other role.");
 			log.error(e.getMessage());
-			
+
 		}
 		modelAndView.addObject("success", "Your imformation has been updated successfullly.");
 		modelAndView.addObject("registrationForm", new RegistrationForm());
 		modelAndView.setViewName("editUserDetial");
-		
-		
+
 		log.info("updateUserDetail() end");
-		
-		
+
 		return modelAndView;
 	}
 
+	@RequestMapping(value=CHANGE_PASSWORD_URI , method=RequestMethod.GET)
+	public ModelAndView changePassword()
+	
+	{
+		ModelAndView modelAndView  = new ModelAndView();
+		modelAndView.setViewName("change-password");
+		return modelAndView;
+	}
+	
 }

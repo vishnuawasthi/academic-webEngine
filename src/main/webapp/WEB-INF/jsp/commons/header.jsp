@@ -42,8 +42,8 @@
 				<li><a class="drop" href="#">Dash Board</a>
 					<ul>
 						<li><a href="viewUserDetails">View Details</a></li>
-						<li><a href="pages/portfolio.html">Update Details</a></li>
-						<li><a href="pages/full-width.html">Change password</a></li>
+						<li><a href="editUserDetail?id=${userDetals.id}">Update Details</a></li>
+						<li><a href="changePassword">Change password</a></li>
 						<li><a href="pages/sidebar-left.html">Contact us</a></li>
 						<li><a href="pages/sidebar-left-2.html">Deactivate Profile</a></li>
 						<li><a href="pages/sidebar-right.html">Logout</a></li>

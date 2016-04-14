@@ -36,6 +36,8 @@ public interface UserService {
 	public UserDTO getOne(Long id);
 
 	public UserDTO getByUsername(String username);
+	
+	public boolean updatePassword(Integer id,String password);
 
 	@Service
 	public class Impl implements UserService {
@@ -188,6 +190,12 @@ public interface UserService {
 			User entity = userRepository.findUserByUsername(username);
 			log.info("getByUsername () -end");
 			return entityToDTO(entity);
+		}
+
+		@Override
+		public boolean updatePassword(Integer id, String password) {
+			// TODO Auto-generated method stub
+			return false;
 		}
 	}
 }

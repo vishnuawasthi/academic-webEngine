@@ -229,10 +229,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value=CHANGE_PASSWORD_URI , method=RequestMethod.GET)
-	public ModelAndView changePassword()
+	public ModelAndView changePassword(@ModelAttribute("registrationForm") RegistrationForm registrationForm)
 	
 	{
 		ModelAndView modelAndView  = new ModelAndView();
+	
+		modelAndView.addObject("registrationForm", new RegistrationForm());
 		modelAndView.setViewName("change-password");
 		return modelAndView;
 	}

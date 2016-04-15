@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+.form-color{
+	background-color: white;
+	color :gray;
+}
+
+.error-message{
+	color: red;
+}
+.top-bottom-margin{
+	
+}

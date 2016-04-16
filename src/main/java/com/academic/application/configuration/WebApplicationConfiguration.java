@@ -25,7 +25,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableSpringDataWebSupport
 @EnableWebMvc
 @Configuration
-@Import(value = { JPAConfiguration.class, EmailConfiguration.class, })
+@Import(value = { JPAConfiguration.class, EmailConfiguration.class, SecurityConfiguration.class})
 @PropertySource(value = { "classpath:application.properties"
 
 })

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -36,11 +37,14 @@ public interface UserService {
 	public UserDTO getOne(Long id);
 
 	public UserDTO getByUsername(String username);
-	
-	public boolean updatePassword(Integer id,String password);
+
+	public boolean updatePassword(Integer id, String password);
+
+	public UserDTO getCurrentUser();
 
 	@Service
 	public class Impl implements UserService {
+
 		private static final Logger log = Logger.getLogger(Impl.class);
 
 		@Autowired
@@ -169,7 +173,7 @@ public interface UserService {
 				dto.setProfilePictureURL(entity.getProfilePictureURL());
 				dto.setUsername(entity.getUsername());
 				dto.setPassword(entity.getPassword());
-				dto.setRoleName(entity.getUserRole()!=null?entity.getUserRole().getRoleName() :null );
+				dto.setRoleName(entity.getUserRole() != null ? entity.getUserRole().getRoleName() : null);
 				// TODO - role setting is not done
 				return dto;
 			}
@@ -196,6 +200,18 @@ public interface UserService {
 		public boolean updatePassword(Integer id, String password) {
 			// TODO Auto-generated method stub
 			return false;
+		}
+
+		@Override
+		public UserDTO getCurrentUser() {
+			log.info("getCurrentUser()  - start");
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (user != null) {
+				log.info("getCurrentUser()  - end");
+				return entityToDTO(user);
+			}
+			log.info("getCurrentUser()  - end: No record found");
+			return null;
 		}
 	}
 }

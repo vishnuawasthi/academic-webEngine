@@ -34,21 +34,26 @@ public class BaseController {
 	}
 	
 
-	@RequestMapping(value = { LANDING_URI }, method = RequestMethod.POST)
+	@RequestMapping(value = { LANDING_URI }, method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView performLogin() {
 		log.info("performLogin() - start");
 		ModelAndView modelAndView = new ModelAndView();
 		UserDTO userDTO = userService.getCurrentUser();
+		System.out.println("UserDTO"  +userDTO);
 		modelAndView.addObject("userDetails", userDTO);
 		modelAndView.setViewName("index");
 		log.info("performLogin() - end");
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, ModelMap modelMap) {
+	@RequestMapping(value = "/login", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView login(
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout, 
+			ModelMap modelMap) {
 		log.info("login() - start");
+		System.out.println("error ::::::: "+error);
+		
 		if (error != null) {
 			modelMap.put("error", "Invalid username and password!");
 		}
@@ -59,7 +64,7 @@ public class BaseController {
 		return new ModelAndView("login", modelMap);
 	}
 
-	@RequestMapping(value = "/403")
+	@RequestMapping(value = "/403",method=RequestMethod.GET)
 	public ModelAndView accessDenied(ModelMap modelMap) {
 		log.info("accessDenied() - start");
 		modelMap.put("AccessDenied ", "Sorry,You don't have previliges to access this content");

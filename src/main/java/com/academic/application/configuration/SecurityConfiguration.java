@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 //@Configuration
 @EnableWebSecurity
@@ -28,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+		System.out.println("configure :::::::::::::");
 		/*
 		 * http .csrf().disable()
 		 * .authorizeRequests().antMatchers("/home").access("hasRole('USER')")
@@ -40,18 +41,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 */
 
 		http.csrf().disable().authorizeRequests()
-				.antMatchers(HttpMethod.GET, "/").permitAll()
-				.antMatchers(HttpMethod.GET, "/login").permitAll()
-				.antMatchers(HttpMethod.GET, "/logout").permitAll()
-				.antMatchers("/*")
+				//.antMatchers(HttpMethod.GET, "/").permitAll()
+				//.antMatchers(HttpMethod.GET, "/login").permitAll()
+				//.antMatchers(HttpMethod.GET, "/logout").permitAll()
+				.antMatchers("/register/**")
 				.authenticated()
+				
 				.and()
 				.formLogin()
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.loginPage("/login")
 			//	.loginProcessingUrl("")
-				.successHandler(successHandler)
+				//.successHandler(successHandler)
 				.failureUrl("/login?error")
 				.and()
 				.logout()

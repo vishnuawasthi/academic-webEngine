@@ -1,12 +1,14 @@
 package com.academic.application.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.springframework.util.CollectionUtils;
 
 import com.academic.application.entity.User;
 import com.academic.application.repository.UserRepository;
@@ -22,14 +24,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("loadUserByUsername() - start");
-		if (!StringUtils.isEmpty(username)) {
-			User user = userRepository.findUserByUsername(username);
-			if (!StringUtils.isEmpty(user))
-				return new UserDetailsImpl(user);
-			log.info("loadUserByUsername() - end");
+		System.out.println("loadUserByUsername   :  username " + username);
+		List<User> users = null;
+		User user = null;
+		try{
+			 users = userRepository.findUserByUsername(username);
+			 
+			 System.out.println("users : "+users);
+			 
+			 if(!CollectionUtils.isEmpty(users)){
+				 user = users.get(0);
+			 }
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		log.info("loadUserByUsername() - end  : record  is null");
-		return null;
+		
+		System.out.println("*****************************************");
+		
+		System.out.println("user::::::::::::::::" + user.getUsername() + "   Password " + user.getPassword());
+		System.out.println("(((((((((((((((((((((((((((((((((((((((((");
+		return new UserDetailsImpl(user);
 	}
 
 }

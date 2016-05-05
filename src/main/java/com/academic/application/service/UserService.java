@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.academic.application.dto.UserDTO;
@@ -191,9 +192,13 @@ public interface UserService {
 		@Override
 		public UserDTO getByUsername(String username) {
 			log.info("getByUsername () -start");
-			User entity = userRepository.findUserByUsername(username);
-			log.info("getByUsername () -end");
-			return entityToDTO(entity);
+			List<User> users = userRepository.findUserByUsername(username);
+			User entity = null;
+			if(!CollectionUtils.isEmpty(users)){
+				entity= users.get(0); 
+				return entityToDTO(entity);
+			}
+			return null;
 		}
 
 		@Override

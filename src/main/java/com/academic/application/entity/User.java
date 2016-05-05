@@ -212,6 +212,22 @@ public class User implements Serializable {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email + ", mobile=" + mobile + ", phone=" + phone
+				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", city=" + city + ", pincode="
+				+ pincode + ", state=" + state + ", country=" + country + ", profilePictureURL=" + profilePictureURL
+				+ ", userRole=" + userRole + ", getUserRole()=" + getUserRole() + ", getId()=" + getId()
+				+ ", getUsername()=" + getUsername() + ", getPassword()=" + getPassword() + ", getFirstName()="
+				+ getFirstName() + ", getLastName()=" + getLastName() + ", getEmail()=" + getEmail() + ", getMobile()="
+				+ getMobile() + ", getPhone()=" + getPhone() + ", getAddressLine1()=" + getAddressLine1()
+				+ ", getAddressLine2()=" + getAddressLine2() + ", getCity()=" + getCity() + ", getState()="
+				+ getState() + ", getCountry()=" + getCountry() + ", getProfilePictureURL()=" + getProfilePictureURL()
+				+ ", getPincode()=" + getPincode() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
 	
 	
 	

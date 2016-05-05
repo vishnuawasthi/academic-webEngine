@@ -138,6 +138,16 @@ public class UserDTO {
 	}
 
 
+	@Override
+	public String toString() {
+		return "UserDTO [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email + ", mobile=" + mobile + ", phone=" + phone
+				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", city=" + city + ", state="
+				+ state + ", country=" + country + ", pincode=" + pincode + ", profilePictureURL=" + profilePictureURL
+				+ ", roleName=" + roleName + "]";
+	}
+
+
 		
 	
 	

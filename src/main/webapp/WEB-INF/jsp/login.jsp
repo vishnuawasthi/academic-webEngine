@@ -4,8 +4,8 @@
 
 	<h2>Login with Username and Password</h2>
 
-	<c:if test="${error ne null}">  ${error} </c:if>
-	<c:if test="${msg ne null }"> ${msg } </c:if>
+	 ${error} 
+	 ${msg } 
 	<form name='loginForm' action="login" method='POST'>
 		<table>
 			<tr>

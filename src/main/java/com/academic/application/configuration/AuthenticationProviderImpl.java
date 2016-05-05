@@ -35,6 +35,9 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 
 		UserDetails user = userDetailsService.loadUserByUsername(authentication.getName());
 
+		System.out.println("Name     : "+name);
+		System.out.println("Password : "+password);
+		
 		if (name.equals(user.getUsername()) && password.equals(user.getPassword())) {
 				final UserDetails principal = new User(name, password, user.getAuthorities());
 				

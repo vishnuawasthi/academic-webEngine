@@ -46,7 +46,11 @@
 						<li><a href="changePassword">Change password</a></li>
 						<li><a href="pages/sidebar-left.html">Contact us</a></li>
 						<li><a href="pages/sidebar-left-2.html">Deactivate Profile</a></li>
-						<li><a href="pages/sidebar-right.html">Logout</a></li>
+						<li><a href="#" id="logout">Logout</a>
+						<form action="logout" method="post" id="logoutForm">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+							</form></li>
 					</ul></li>
 				<li><a class="drop" href="#">Create Test</a>
 					<ul>
@@ -65,3 +69,4 @@
 		</nav>
 	</div>
 </div>
+

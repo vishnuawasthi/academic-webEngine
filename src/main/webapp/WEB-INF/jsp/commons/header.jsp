@@ -38,7 +38,7 @@
 	<div class="rounded">
 		<nav id="mainav" class="clear">
 			<ul class="clear">
-				<li class="active"><a href="index.html">Home</a></li>
+				<li class="active"><a href="index.html">Home    </a></li>
 				<li><a class="drop" href="#">Dash Board</a>
 					<ul>
 						<li><a href="viewUserDetails">View Details</a></li>

@@ -19,19 +19,19 @@ public class BaseController {
 	
 	private static final String BASE_URI = "/";
 
-	private static final String WELCOME_URI = "/index";
+	private static final String WELCOME_URI = "/landing";
 
 	private static final String  LANDING_URI = "landing";
 
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = { BASE_URI, WELCOME_URI }, method = RequestMethod.GET)
+	/*@RequestMapping(value = { WELCOME_URI }, method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("index");
+		modelAndView.setViewName("landing");
 		return modelAndView;
-	}
+	}*/
 	
 
 	@RequestMapping(value = { LANDING_URI }, method = {RequestMethod.GET,RequestMethod.POST})
@@ -41,7 +41,7 @@ public class BaseController {
 		UserDTO userDTO = userService.getCurrentUser();
 		System.out.println("UserDTO"  +userDTO);
 		modelAndView.addObject("userDetails", userDTO);
-		modelAndView.setViewName("index");
+		modelAndView.setViewName("landing");
 		log.info("performLogin() - end");
 		return modelAndView;
 	}

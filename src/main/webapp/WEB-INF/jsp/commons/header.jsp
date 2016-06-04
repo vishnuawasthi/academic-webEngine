@@ -1,13 +1,13 @@
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <div class="wrapper row0">
 	<div id="topbar" class="clear">
 		<nav>
 			<ul>
-				<li><a href="index">Home</a></li>
-				<li><a href="#">Contact Us</a></li>
+				<li><a href="landing">Home</a></li>
+				<li><a href="contact-us">Contact Us</a></li>
 				<li><a href="#">A - Z Index</a></li>
 				<li><a href="register">Not a member register ToDay</a></li>
-				<li><a href="#">Login</a></li>
+				<li><a href="#"   id="logout">Logout</a>
 			</ul>
 		</nav>
 	</div>
@@ -38,21 +38,24 @@
 	<div class="rounded">
 		<nav id="mainav" class="clear">
 			<ul class="clear">
-				<li class="active"><a href="index.html">Home    </a></li>
+				<li class="active"><a href="landing">Home    </a></li>
 				<li><a class="drop" href="#">Dash Board</a>
 					<ul>
 						<li><a href="viewUserDetails">View Details</a></li>
 						<li><a href="editUserDetail?id=${userDetals.id}">Update Details</a></li>
 						<li><a href="changePassword">Change password</a></li>
-						<li><a href="pages/sidebar-left.html">Contact us</a></li>
+						<li><a href="contact-us">Contact us</a></li>
+						
+						<%-- <security:authorize ifAnyGranted="ROLE_ADMIN"> --%>
 						<li><a href="pages/sidebar-left-2.html">Deactivate Profile</a></li>
-						<li><a href="#" id="logout">Logout</a>
+						<%-- </security:authorize> --%>
+						<li><a href="#" id="logout2">Logout</a>
 						<form action="logout" method="post" id="logoutForm">
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" />
 							</form></li>
 					</ul></li>
-				<li><a class="drop" href="#">Create Test</a>
+				<li><a class="drop" href="#">Online Example</a>
 					<ul>
 						<li><a href="#">Level 2</a></li>
 						<li><a class="drop" href="#">Level 2 + Drop</a>

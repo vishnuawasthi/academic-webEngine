@@ -17,7 +17,12 @@ import org.springframework.util.StringUtils;
 public class CommonSortUtility {
 
 	public static Pageable createPageRequest(int page, int size, Sort sort) {
+		
 		return new PageRequest(page, size, sort);
+	}
+	
+public static Pageable createPageRequest(int page, int size) {
+		return new PageRequest(page, size);
 	}
 
 	/**

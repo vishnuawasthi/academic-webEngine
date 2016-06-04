@@ -2,7 +2,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<div class="wrapper  form-color">
+<div class="wrapper">
+<div class="rounded">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-6 col-md-6">
 			<h3>Update User PerSonal Information</h3>
@@ -135,4 +136,5 @@
 			</div>
 		</div>
 	</form:form>
+	</div>
 </div>

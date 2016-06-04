@@ -237,5 +237,4 @@ public class UserController {
 		modelAndView.setViewName("change-password");
 		return modelAndView;
 	}
-	
 }

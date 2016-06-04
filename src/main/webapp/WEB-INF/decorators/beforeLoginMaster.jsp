@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,13 @@
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css"
 	media="all">
 
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 20%;
+      margin: auto;
+  }
+  </style>
 
 
 <title><sitemesh:write property='title' /></title>
@@ -34,6 +42,7 @@
 	<sitemesh:write property='body' />
 	<%@include file="/WEB-INF/jsp/commons/footer.jsp"%>
 	<script src="layout/scripts/jquery.min.js"></script>
+	<script src="resources/script/bootstrap.min.js"></script>
 	<script src="layout/scripts/jquery.fitvids.min.js"></script>
 	<script src="layout/scripts/jquery.mobilemenu.js"></script>
 	<script src="layout/scripts/tabslet/jquery.tabslet.min.js"></script>
@@ -44,6 +53,15 @@
 			$("#logoutForm").submit();
 		});
 	});
+	
+	
+	$(document).ready(function(){
+		$("#logout2").click(function(){
+			alert("logout2");
+			$("#logoutForm").submit();
+		});
+	});
+	
 	</script>
 </body>
 </html>

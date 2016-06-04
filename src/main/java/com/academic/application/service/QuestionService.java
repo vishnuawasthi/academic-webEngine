@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -34,6 +35,8 @@ public interface QuestionService {
 	public List<QuestionDTO> getAll();
 
 	public List<QuestionDTO> getAll(QuestionSearchCriteria criteria);
+	
+	public List<QuestionDTO> getQuestions(QuestionSearchCriteria criteria);
 
 	@Service
 	public class Impl implements QuestionService {
@@ -153,6 +156,24 @@ public interface QuestionService {
 				dtos.add(entityToDTO(entity));
 			}
 			log.info("getAll() - end");
+			return dtos;
+		}
+
+		@Override
+		public List<QuestionDTO> getQuestions(QuestionSearchCriteria criteria) {
+			log.info("getQuestions() - start");
+			
+			Page<Question > page = repository.findAll(CommonSortUtility.createPageRequest(criteria.getPage(), criteria.getSize()));
+			Iterable <Question> questions =  null;
+			if(page != null){
+				questions =	page.getContent();
+			}
+			
+			List<QuestionDTO> dtos = new ArrayList<QuestionDTO>();
+			for( Question entity  : CollectionUtility.emptyIfNull(questions)  ){
+				dtos.add(entityToDTO(entity));
+			}
+			log.info("getQuestions() - end");
 			return dtos;
 		}
 

@@ -26,6 +26,15 @@ public class SiteMeshFilterConfiguration extends ConfigurableSiteMeshFilter {
 		builder.addDecoratorPath("/viewUserDetails", "/WEB-INF/decorators/beforeLoginMaster.jsp");
 		builder.addDecoratorPath("/editUserDetail", "/WEB-INF/decorators/beforeLoginMaster.jsp");
 		builder.addDecoratorPath("/updateUserDetail", "/WEB-INF/decorators/beforeLoginMaster.jsp");
+		builder.addDecoratorPath("/changePassword", "/WEB-INF/decorators/beforeLoginMaster.jsp");
+		builder.addDecoratorPath("/contact-us", "/WEB-INF/decorators/beforeLoginMaster.jsp");
+		
+		builder.addDecoratorPath("/online-exam", "/WEB-INF/decorators/beforeLoginMaster.jsp");
+		
+		//changePassword
+		//contact-us
+		//online-exam
+		
 		System.out.println("applyCustomConfiguration() - end");
 	}
 

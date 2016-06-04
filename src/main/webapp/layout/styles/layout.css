@@ -276,7 +276,9 @@ hr, .borderedbox{border-color:#D7D7D7;}
 
 label span{color:#FF0000; background-color:inherit;}
 
-.rounded{color:inherit; background-color:#F9F9F9;}
+.rounded{color:inherit; background-color:#F9F9F9;
+color:black;
+}
 
 
 /* Rows */

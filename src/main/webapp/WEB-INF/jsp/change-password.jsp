@@ -2,16 +2,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<div class="wrapper  form-color">
+<div class="wrapper">
+<div class="rounded">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-6 col-md-6">
-			<h3>Change Password</h3>
+			<h1>Change Password</h1>
 		</div>
-
-
-
 		<div class="col-sm-offset-2 col-sm-6 col-md-6">
-
 			<c:if test="${not empty success }">
 				<div class="alert alert-success">${success}</div>
 			</c:if>
@@ -62,4 +59,5 @@
 			</div>
 		</div>
 	</form:form>
+	</div>
 </div>

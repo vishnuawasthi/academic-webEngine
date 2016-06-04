@@ -11,6 +11,16 @@
 .top-bottom-margin{
 	
 }
+.example-awaser-form{
+	margin: 0px;
+	padding: 0px;
+}
+
+.inline-inputbox{
+	display: inline;
+	width: 40px;
+	margin-left: 0px;
+}
 
 
 .error {

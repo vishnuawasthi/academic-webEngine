@@ -2,8 +2,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<div class="wrapper  form-color">
-
+<div class="wrapper">
+<div class="rounded">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-4 col-md-4">   RoleType   </div>
 		<div class=" col-sm-4 col-md-4"> ${userDetals.roleName }   </div>
@@ -69,5 +69,5 @@
 		<div class=" col-sm-4 col-md-4">   ${userDetals.country}    </div>
 	</div>
 	
-	
+	</div>
 </div>
